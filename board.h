@@ -7,18 +7,17 @@
 #ifndef SKAK_BOARD_H
 #define SKAK_BOARD_H
 
-#include "stdlib.h"
 #include "defs.h"
+#include "stdlib.h"
 
 #pragma mark - Type Defs
 
 // File/Rank to square
 #define FR2SQ(f, r) ((21 + (f)) + ((r)*10))
-#define SQ64(sq120) SQ_120_TO_64[sq120]
+#define SQ64(sq120) kSQ_120_TO_64[sq120]
 
 #define BOARD_MAX_LENGTH 120
 #define STD_BOARD_LENGTH 64
-#define MAX_GAME_MOVES 2048
 
 #pragma mark - Globals
 
@@ -26,9 +25,9 @@
 //
 // could maybe do this differently, with an array of diagonals but
 // will get this working for now
-extern int SQ_120_TO_64[BOARD_MAX_LENGTH];
+extern int kSQ_120_TO_64[BOARD_MAX_LENGTH];
 // This is the standard game board
-extern int SQ_64_TO_120[STD_BOARD_LENGTH];
+extern int kSQ_64_TO_120[STD_BOARD_LENGTH];
 
 #pragma mark - Enums
 
@@ -155,7 +154,5 @@ typedef struct {
 } SKBoard;
 
 #pragma mark - Functions
-
-extern void initialise();
 
 #endif  // SKAK_BOARD_H

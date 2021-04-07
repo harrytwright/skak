@@ -1,3 +1,8 @@
 # Just a simple file to hold any meta data
 [skak]
     version="0.0.1-beta-1"
+
+# An idea here to create a simple cli for personal projects to run
+# scripts or commands like npm (version|run|git) etc
+[scripts]
+    lint="clang-format -style=file -i $(echo *.{h,c})"

@@ -7,17 +7,23 @@
 
 #include "stdio.h"
 
+#pragma mark - Typedefs
+
 typedef unsigned long long U64;
 
-#define INIT_U64 1ULL
+#pragma mark - Define
+
+#define MAX_GAME_MOVES 2048
+
+#pragma mark - Logging
 
 #define SKLogLine printf("\n")
 #define SKLog(format, ...) printf(format, ##__VA_ARGS__)
 
 #ifndef DEBUG
-#define SKDebugLog(format, ...)
+#define SKDebugLog(format, ...) printf(format, ##__VA_ARGS__)
 #else
-#define SKDebugLog(format, ...) SKLog(format, ##__VA_ARGS__)
+#define SKDebugLog(format, ...)
 #endif
 
-#endif //SKAK_DEFS_H
+#endif  // SKAK_DEFS_H

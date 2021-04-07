@@ -16,4 +16,4 @@
     }
 #endif
 
-#endif //SKAK_ASSERT_H
+#endif  // SKAK_ASSERT_H
