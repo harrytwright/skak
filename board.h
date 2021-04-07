@@ -4,32 +4,21 @@
 // The structures could be cleaned up a little
 //
 
-#ifndef ENGINE_BOARD_H
-#define ENGINE_BOARD_H
+#ifndef SKAK_BOARD_H
+#define SKAK_BOARD_H
 
 #include "stdlib.h"
+#include "defs.h"
 
 #pragma mark - Type Defs
 
-typedef unsigned long long U64;
-
 // File/Rank to square
 #define FR2SQ(f, r) ((21 + (f)) + ((r)*10))
+#define SQ64(sq120) SQ_120_TO_64[sq120]
 
 #define BOARD_MAX_LENGTH 120
 #define STD_BOARD_LENGTH 64
 #define MAX_GAME_MOVES 2048
-
-#ifndef DEBUG
-#define ASSERT(n)
-#else
-#define ASSERT(n)                                      \
-    if (!(n)) {                                        \
-        printf("[%s] - failed ", #n);                  \
-        printf("@ line %d in %s", __LINE__, __FILE__); \
-        exit(1);                                       \
-    }
-#endif
 
 #pragma mark - Globals
 
@@ -110,7 +99,7 @@ typedef struct {
     int en_pas;
     int fifty_move;
     U64 position_hash;
-} EGMove;
+} SKMove;
 
 /**
  * Structure to handle the board/game details
@@ -131,7 +120,7 @@ typedef struct {
     int side;
 
     // The square that can en passant
-    int enPas;
+    int en_pas;
 
     // Counter for 50 move rule
     int fifty_move;
@@ -159,14 +148,14 @@ typedef struct {
     int minor_pieces[3];
 
     // History of moves
-    EGMove history[MAX_GAME_MOVES];
+    SKMove history[MAX_GAME_MOVES];
 
     // piece list
     int piece_list[13][10];
-} EGBoard;
+} SKBoard;
 
 #pragma mark - Functions
 
 extern void initialise();
 
-#endif  // ENGINE_BOARD_H
+#endif  // SKAK_BOARD_H

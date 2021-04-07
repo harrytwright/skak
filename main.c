@@ -4,23 +4,21 @@
 
 #define DEBUG
 
-#include "board.h"
 #include "stdio.h"
+
+#include "defs.h"
+#include "board.h"
+#include "bitboards.h"
 
 int main() {
     initialise();
 
-    for (int index = 0; index < BOARD_MAX_LENGTH; ++index) {
-        if (index % 10 == 0) printf("\n");
-        printf("%5d", SQ_120_TO_64[index]);
-    }
+    U64 play = 0ULL;
+    play |= (1ULL << SQ64(D2));
+    play |= (1ULL << SQ64(E5));
+    print(play);
 
-    printf("\n");
-
-    for (int index = 0; index < STD_BOARD_LENGTH; ++index) {
-        if (index % 8 == 0) printf("\n");
-        printf("%5d", SQ_64_TO_120[index]);
-    }
+    SKLogLine;
 
     return 0;
 }
