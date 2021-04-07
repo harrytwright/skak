@@ -32,6 +32,4 @@ void init_array_120_64() {
     }
 }
 
-void initialise() {
-    init_array_120_64();
-}
+void initialise() { init_array_120_64(); }

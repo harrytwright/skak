@@ -4,8 +4,8 @@
 
 #define DEBUG
 
-#include "stdio.h"
 #include "board.h"
+#include "stdio.h"
 
 int main() {
     initialise();

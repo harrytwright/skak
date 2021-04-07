@@ -14,7 +14,7 @@
 typedef unsigned long long U64;
 
 // File/Rank to square
-#define FR2SQ(f, r) ((21 + (f)) + ((r) * 10))
+#define FR2SQ(f, r) ((21 + (f)) + ((r)*10))
 
 #define BOARD_MAX_LENGTH 120
 #define STD_BOARD_LENGTH 64
@@ -23,12 +23,12 @@ typedef unsigned long long U64;
 #ifndef DEBUG
 #define ASSERT(n)
 #else
-#define ASSERT(n) \
-if(!(n)) {        \
-    printf("[%s] - failed ", #n); \
-    printf("@ line %d in %s", __LINE__, __FILE__); \
-    exit(1);          \
-}
+#define ASSERT(n)                                      \
+    if (!(n)) {                                        \
+        printf("[%s] - failed ", #n);                  \
+        printf("@ line %d in %s", __LINE__, __FILE__); \
+        exit(1);                                       \
+    }
 #endif
 
 #pragma mark - Globals
@@ -44,21 +44,7 @@ extern int SQ_64_TO_120[STD_BOARD_LENGTH];
 #pragma mark - Enums
 
 // Pieces
-enum {
-    EMPTY,
-    wP,
-    wN,
-    wB,
-    wR,
-    wQ,
-    wK,
-    bP,
-    bN,
-    bB,
-    bR,
-    bQ,
-    bK
-};
+enum { EMPTY, wP, wN, wB, wR, wQ, wK, bP, bN, bB, bR, bQ, bK };
 
 // Files
 enum {
@@ -87,14 +73,12 @@ enum {
 };
 
 // Colours
-enum {
-    WHITE,
-    BLACK,
-    BOTH
-};
+enum { WHITE, BLACK, BOTH };
 
 // Just saves pointless writing
-#define FILE(file, initial_value) A##file = initial_value, B##file, C##file, D##file, E##file, F##file, G##file, H##file
+#define FILE(file, initial_value)                                         \
+    A##file = initial_value, B##file, C##file, D##file, E##file, F##file, \
+    G##file, H##file
 
 // Board
 enum {
@@ -110,18 +94,10 @@ enum {
 };
 
 // Boolean constants
-enum {
-    TRUE,
-    FALSE
-};
+enum { TRUE, FALSE };
 
 // Can castle
-enum {
-    wKC = 1,
-    wQC = 2,
-    bKC = 4,
-    bQC = 8
-};
+enum { wKC = 1, wQC = 2, bKC = 4, bQC = 8 };
 
 #pragma mark - Structs
 
@@ -178,7 +154,7 @@ typedef struct {
     //
     // These are for endgames, evaluations
     int piece_number[13];
-    int juicers[3]; // Thanks for xQCow for this one
+    int juicers[3];  // Thanks for xQCow for this one
     int major_pieces[3];
     int minor_pieces[3];
 
@@ -193,4 +169,4 @@ typedef struct {
 
 extern void initialise();
 
-#endif //ENGINE_BOARD_H
+#endif  // ENGINE_BOARD_H
