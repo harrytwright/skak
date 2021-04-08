@@ -13,6 +13,7 @@ typedef unsigned long long U64;
 
 #pragma mark - Define
 
+#define NAME "Skäk 0.0.1-beta.1"
 #define MAX_GAME_MOVES 2048
 
 #pragma mark - Logging

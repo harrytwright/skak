@@ -98,7 +98,7 @@ typedef struct {
     int en_pas;
     int fifty_move;
     U64 position_hash;
-} SKMove;
+} SKUndo;
 
 /**
  * Structure to handle the board/game details
@@ -147,7 +147,7 @@ typedef struct {
     int minor_pieces[3];
 
     // History of moves
-    SKMove history[MAX_GAME_MOVES];
+    SKUndo history[MAX_GAME_MOVES];
 
     // piece list
     int piece_list[13][10];

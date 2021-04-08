@@ -5,6 +5,8 @@
 #ifndef SKAK_ASSERT_H
 #define SKAK_ASSERT_H
 
+#define DEBUG
+
 #ifndef DEBUG
 #define ASSERT(n)
 #else
