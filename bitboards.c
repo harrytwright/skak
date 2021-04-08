@@ -4,7 +4,11 @@
 
 #include "bitboards.h"
 
+#include "bitboards+private.h"
 #include "board.h"
+
+U64 kSetMask[64];
+U64 kClearMask[64];
 
 const int BitTable[64] = {63, 30, 3,  32, 25, 41, 22, 33, 15, 50, 42, 13, 11,
                           53, 19, 34, 61, 29, 2,  51, 21, 43, 45, 10, 18, 47,
@@ -26,7 +30,21 @@ int count_bits(U64 b) {
     return r;
 }
 
-void print(U64 bb) {
+void bit_mask_init() {
+    int index = 0;
+
+    for (index = 0; index < 64; index++) {
+        kSetMask[index] = 0ULL;
+        kClearMask[index] = 0ULL;
+    }
+
+    for (index = 0; index < 64; index++) {
+        kSetMask[index] |= (1ULL << index);
+        kClearMask[index] = ~kSetMask[index];
+    }
+}
+
+void print_bit(U64 bb) {
     U64 board = 1ULL;
 
     int rank = 0;

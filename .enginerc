@@ -6,3 +6,30 @@
 # scripts or commands like npm (version|run|git) etc
 [scripts]
     lint="clang-format -style=file -i $(echo *.{h,c})"
+
+[nameingConvension]
+    [localVariables] # bitboard
+        case='lowerCamelCase'
+    [globalVariables] # kGlobalVaiable
+        case='lowerCamelCase'
+        prefix='k'
+    [constVariables] # BOARD_MAX_LENGTH
+        case='capital'
+    [structs] # SKBoard
+        case='CamelCase'
+        prefix='SK'
+    [structMember] # SKBoard->position_hash
+        # Subject to change
+        case='snake_case'
+    [namedEnum] # SKFile
+        case='CamelCase'
+        prefix='SK'
+    [enumValue] # SKFile.A1
+        case='capital'
+    [functions]
+        case='snake_case'
+        format='{verb}_{firstArgument??}' # pop_bit
+        [struct]
+            prefix='{struct.name - prefix}' # board_make || board_pop_bit
+    [macros]
+        case='capital'
