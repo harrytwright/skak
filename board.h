@@ -14,10 +14,13 @@
 
 // File/Rank to square
 #define FR2SQ(f, r) ((21 + (f)) + ((r)*10))
-#define SQ64(sq120) kSQ_120_TO_64[sq120]
+#define SQ64(sq120) (kSQ_120_TO_64[(sq120)])
+#define SQ120(sq64) (kSQ_64_TO_120[(sq64)])
 
 #define BOARD_MAX_LENGTH 120
 #define STD_BOARD_LENGTH 64
+
+#define START_FEN "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1"
 
 #pragma mark - Globals
 
@@ -28,6 +31,9 @@
 extern int kSQ_120_TO_64[BOARD_MAX_LENGTH];
 // This is the standard game board
 extern int kSQ_64_TO_120[STD_BOARD_LENGTH];
+
+extern int kFiles[BOARD_MAX_LENGTH];
+extern int kRanks[BOARD_MAX_LENGTH];
 
 #pragma mark - Enums
 
@@ -77,12 +83,8 @@ enum {
     FILE(5, 61),
     FILE(6, 71),
     FILE(7, 81),
-    FILE(8, 91),
-    NO_SQ
+    FILE(8, 91), NO_SQ, OFF_BOARD
 };
-
-// Boolean constants
-enum { TRUE, FALSE };
 
 // Can castle
 enum { wKC = 1, wQC = 2, bKC = 4, bQC = 8 };
@@ -142,9 +144,10 @@ typedef struct {
     //
     // These are for endgames, evaluations
     int piece_number[13];
-    int juicers[3];  // Thanks for xQCow for this one
-    int major_pieces[3];
-    int minor_pieces[3];
+    int juicers[2];  // Thanks for xQCow for this one
+    int major_pieces[2];
+    int minor_pieces[2];
+    int material[2];
 
     // History of moves
     SKUndo history[MAX_GAME_MOVES];
@@ -154,5 +157,35 @@ typedef struct {
 } SKBoard;
 
 #pragma mark - Functions
+
+/**
+ * Initialise a board
+ * */
+extern SKBoard *board_initialise(const char *fen);
+
+/**
+ * Create/Update a board from a fen
+ * */
+extern int board_make(const char *fen, SKBoard *pos);
+
+/**
+ *
+ * */
+extern void board_reset(SKBoard *pos);
+
+/**
+ *
+ * */
+extern int board_check(const SKBoard *pos);
+
+/**
+ *
+ * */
+extern void board_update(SKBoard *pos);
+
+/**
+ *
+ * */
+extern void board_print(const SKBoard *pos);
 
 #endif  // SKAK_BOARD_H

@@ -5,9 +5,8 @@
 #ifndef SKAK_HASH_H
 #define SKAK_HASH_H
 
-#include "defs.h"
-
 #include "board.h"
+#include "defs.h"
 
 extern U64 KSideKey;
 extern U64 kCastleKeys[16];

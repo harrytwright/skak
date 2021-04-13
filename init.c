@@ -4,9 +4,9 @@
 
 #include "init.h"
 
-#include "hash+private.h"
 #include "bitboards+private.h"
 #include "board+private.h"
+#include "hash+private.h"
 
 void initialise() {
     hash_keys_init();

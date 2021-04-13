@@ -4,13 +4,13 @@
 
 #include "hash.h"
 
-#include "stdlib.h"
-#include "hash+private.h"
 #include "assert.h"
+#include "hash+private.h"
+#include "stdlib.h"
 
 #define RAND_64                                                \
-    ((U64)rand() + ((U64)rand() << 15) + ((U64)rand() << 30) + \
-     ((U64)rand() << 45) + (((U64)rand() & 0xf) << 60));
+    ((U64)rand() | ((U64)rand() << 15) | ((U64)rand() << 30) | \
+     ((U64)rand() << 45) | (((U64)rand() & 0xf) << 60));
 
 U64 kSideKey;
 U64 kCastleKeys[16];
@@ -38,8 +38,8 @@ U64 hash_key_make(SKBoard *pos) {
     int piece = EMPTY;
 
     for (int i = 0; i < BOARD_MAX_LENGTH; ++i) {
-        piece = pos->piece_number[i];
-        if (piece != NO_SQ && piece != EMPTY) {
+        piece = pos->pieces[i];
+        if (piece != NO_SQ && piece != EMPTY && piece != OFF_BOARD) {
             ASSERT(piece >= wP && piece <= bK)
             key ^= kPieceKeys[piece][i];
         }

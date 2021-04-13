@@ -27,4 +27,7 @@ typedef unsigned long long U64;
 #define SKDebugLog(format, ...)
 #endif
 
+// Boolean constants
+enum { FALSE, TRUE };
+
 #endif  // SKAK_DEFS_H
